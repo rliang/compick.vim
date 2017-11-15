@@ -5,7 +5,7 @@ fu! compick#do(type,...)
   let b:compick_action='s:default_action'
   let b:compick_filter='s:default_filter'
   let b:compick_format='s:default_format'
-  setl nosmd nobl bt=nofile ut=0 ph=10 cot=menuone,noinsert,preview
+  setl nobl bt=nofile ut=0 ph=10 cot=menuone,noinsert,preview
   redr
   star
   au cursorholdi,cursormovedi <buffer> cal compick#popup()
