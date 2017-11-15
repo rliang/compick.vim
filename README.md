@@ -21,14 +21,14 @@ nnoremap <leader>baz :call compick#do('git')<cr>
 * `b:compick_source`: List of strings or completion items to pick from. See `:h
   complete-items`. Default `[]`.
 * `b:compick_action`: Function name or funcref that takes the picked completion
-  item's `word` and does something. [Default](autoload/compick.vim#L27-L29)
+  item's `word` and does something. [Default](autoload/compick.vim#L28-L30)
 * `b:compick_filter`: Function name or funcref that takes the completion items
   and the current line, and returns the filtered items. Here you might want to
   use a custom fuzzy matching function.
-  [Default](autoload/compick.vim#L31-L34)
+  [Default](autoload/compick.vim#L32-L35)
 * `b:compick_format`: Function name or funcref that takes a completion item's
   index and value, and returns a completion item. Used for styling completion
-  items. [Default](autoload/compick.vim#L36-L38)
+  items. [Default](autoload/compick.vim#L37-L39)
 
 ## Functions
 * `compick#do(type[,split])`: Opens a picker buffer of filetype

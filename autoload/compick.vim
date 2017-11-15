@@ -5,9 +5,10 @@ fu! compick#do(type,...)
   let b:compick_action='s:default_action'
   let b:compick_filter='s:default_filter'
   let b:compick_format='s:default_format'
+  setl nobl bt=nofile ut=0 ph=10 cot=menuone,noinsert,preview
   star
-  setl nobl bt=nofile ut=0 cot=menuone,noinsert,preview
-  au cursorholdi,cursormovedi,vimresized <buffer> cal compick#popup()
+  redr
+  au cursorholdi,cursormovedi,vimresized <buffer> if mode()=='i' | cal compick#popup() | en
   ino <buffer><esc> <esc>:q<cr>
   ino <buffer><cr> <c-y><esc>:cal compick#accept(getline('.'))<cr>
   let &ft=printf('compick-%s',a:type)
