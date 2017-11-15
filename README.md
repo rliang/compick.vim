@@ -40,7 +40,7 @@ nnoremap <leader>baz :call compick#do('git')<cr>
 ## Customizing a picker type
 ```vim
 au FileType compick-* setlocal noshowmode
-au FileType compick-mru inoremap <buffer>foo ...
+au FileType compick-cwd ino <buffer><c-u> <esc>:call compick#accept('..')<cr>
 ```
 
 ## Defining a picker type
