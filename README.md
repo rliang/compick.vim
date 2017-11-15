@@ -35,12 +35,17 @@ nnoremap <leader>baz :call compick#do('git')<cr>
   `compick-<type>` in the given split (default `bottom 1 split`).
 * `compick#popup()`: Opens the completion popup window with the buffer's
   source.
-* `compick#accept(line)`: Calls the buffer's set action with `line`.
+* `compick#accept(lines)`: Calls the buffer's set action with each string in
+  `lines`.
+
+## Default mappings
+* `<cr>`: Complete the current match and run the buffer action for each line;
+* `<esc>`: Quit.
 
 ## Customizing a picker type
 ```vim
 au FileType compick-* setlocal noshowmode
-au FileType compick-cwd ino <buffer><c-u> <esc>:call compick#accept('..')<cr>
+au FileType compick-cwd ino <buffer><c-u> <esc>:call compick#accept(['..'])<cr>
 ```
 
 ## Defining a picker type
@@ -51,6 +56,3 @@ nnoremap <leader>b :call compick#do('buf')<cr>
 ```
 
 See also the [built-in](plugin/compick.vim#L3-L5) types.
-
-## Caveats
-* Can't pick two items at once.

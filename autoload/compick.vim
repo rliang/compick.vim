@@ -5,12 +5,12 @@ fu! compick#do(type,...)
   let b:compick_action='s:default_action'
   let b:compick_filter='s:default_filter'
   let b:compick_format='s:default_format'
-  setl nosmd nonu nornu nobl bt=nofile ut=0 ph=10 cot=menuone,noinsert,preview
+  setl nosmd nobl bt=nofile ut=0 ph=10 cot=menuone,noinsert,preview
   redr
   star
-  au cursorholdi,cursormovedi,vimresized <buffer> if mode()=='i' | cal compick#popup() | en
+  au cursorholdi,cursormovedi <buffer> cal compick#popup()
   ino <buffer><esc> <esc>:q<cr>
-  ino <buffer><cr> <c-y><esc>:cal compick#accept(getline('.'))<cr>
+  ino <buffer><cr> <c-y><esc>:cal compick#accept(getline(0,'$'))<cr>
   let &ft=printf('compick-%s',a:type)
 endf
 
@@ -19,10 +19,10 @@ fu! compick#popup()
   cal complete(1,map(call(b:compick_filter,[items,getline('.')]),function(b:compick_format)))
 endf
 
-fu! compick#accept(line)
+fu! compick#accept(lines)
   let A=b:compick_action
   bd!
-  cal call(A,[a:line])
+  for l in a:lines | cal call(A,[l]) | endfo
 endf
 
 fu! s:default_action(line)
@@ -35,5 +35,5 @@ fu! s:default_filter(items,line)
 endf
 
 fu! s:default_format(idx,item)
-  retu extend(a:item,{'abbr':printf('%-*s',&co-len(&ft)-2,get(a:item,'abbr',a:item['word'])),'menu':&ft})
+  retu extend(a:item,{'menu':&ft})
 endf
