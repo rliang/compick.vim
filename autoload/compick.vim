@@ -14,7 +14,7 @@ fu! compick#do(type,...)
 endf
 
 fu! compick#popup()
-  let items=map(b:compick_source,'type(v:val)==type("") ? {"word":v:val} : copy(v:val)')
+  let items=map(deepcopy(b:compick_source),'type(v:val)==type("") ? {"word":v:val} : v:val')
   cal complete(1,map(call(b:compick_filter,[items,getline('.')]),function(b:compick_format)))
 endf
 
