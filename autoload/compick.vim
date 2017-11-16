@@ -9,8 +9,8 @@ fu! compick#do(type,...)
   redr
   star
   au cursorholdi,cursormovedi <buffer> cal compick#popup()
-  ino <buffer><esc> <esc>:q<cr>
-  ino <buffer><cr> <c-y><esc>:cal compick#accept(getline(0,'$'))<cr>
+  ino <buffer><silent><esc> <esc>:cal compick#accept([])<cr>
+  ino <buffer><silent><cr> <c-y><esc>:cal compick#accept(getline(0,'$'))<cr>
   let &ft=printf('compick-%s',a:type)
 endf
 
